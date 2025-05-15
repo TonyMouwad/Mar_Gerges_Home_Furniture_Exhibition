@@ -15,6 +15,7 @@
       justify-content: center;
       min-height: 100vh;
       text-align: center;
+      flex-direction: column;
     }
     .container {
       max-width: 600px;
@@ -22,7 +23,7 @@
       padding: 20px;
     }
     .logo {
-      height: 150px;
+      height: 112px;
       width: auto;
       border-radius: 50%;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -53,21 +54,45 @@
     .button:hover {
       background-color: #45A049;
     }
+    .canva-embed {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 141.4286%;
+      margin-top: 1.6em;
+      margin-bottom: 0.9em;
+      box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+      overflow: hidden;
+      border-radius: 8px;
+      will-change: transform;
+    }
+    .canva-embed iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="MarGerges_logo.png" alt="Margergis Logo" class="logo" />
+    <img src="logo.png" alt="Margergis Logo" class="logo" />
     <h1>معرض مارجرجس للأعمال الخشبية</h1>
     <p>لكل الأثاث المنزلى <br>
         (أوض نوم - أوض اطفال - انتريهات - مكاتب)</p>
-    <button class="button" onclick="window.open('https://www.canva.com/design/DAGnbGw-exk/EJnCiTnrvzVP4fXlv7e2yg/view', '_blank')">
-      تصفح الكتالوج
-    </button>
-    <br>
     <button class="button" onclick="window.location.href='tel:01278843587'">
-      📞 اتصل بنا: 01278843587
+      📞 اتصل بنا: 0127 88 43 587
     </button>
+    <div class="canva-embed">
+      <iframe loading="lazy" src="https://www.canva.com/design/DAGnbGw-exk/EJnCiTnrvzVP4fXlv7e2yg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+    </div>
+    <a href="https://www.canva.com/design/DAGnbGw-exk/EJnCiTnrvzVP4fXlv7e2yg/view?utm_content=DAGnbGw-exk&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="color: #4CAF50; font-size: 16px; text-decoration: none;">
+      📄 تصفح الكتالوج على Canva
+    </a>
   </div>
 </body>
 </html>
