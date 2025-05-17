@@ -1,98 +1,448 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>معرض مارجرجس للأعمال الخشبية</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: sans-serif;
-      background-color: #fdfdfd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      flex-direction: column;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
     }
-    .container {
-      max-width: 600px;
-      width: 100%;
-      padding: 20px;
-    }
-    .logo {
-      height: 112px;
-      width: auto;
-      border-radius: 50%;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 32px;
+
+    body {
+      background-color: #f4f1ec;
       color: #333;
-      margin-bottom: 10px;
+      overflow-x: hidden;
     }
-    p {
-      color: #666;
-      font-size: 18px;
-      margin-bottom: 30px;
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #4a2c0b;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: slideDown 0.5s ease-out;
     }
-    .button {
-      background-color: #4c81af;
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      height: 100vh;
+      background: url('panner.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       color: white;
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-      margin: 10px 0;
-    }
-    .button:hover {
-      background-color: #45A049;
-    }
-    .canva-embed {
       position: relative;
-      width: 100%;
-      height: 0;
-      padding-top: 141.4286%;
-      margin-top: 1.6em;
-      margin-bottom: 0.9em;
-      box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
-      overflow: hidden;
-      border-radius: 8px;
-      will-change: transform;
+      margin-top: 80px;
     }
-    .canva-embed iframe {
+
+    .hero::before {
+      content: '';
       position: absolute;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
-      border: none;
-      padding: 0;
-      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Furniture Section */
+    .furniture-section {
+      padding: 50px 20px;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .furniture-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #4a2c0b;
+    }
+
+    .furniture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .furniture-item {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .furniture-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .furniture-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .furniture-item h3 {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: #4a2c0b;
+    }
+
+    .furniture-item p {
+      font-size: 1rem;
+      color: #e67e22;
+      margin-bottom: 15px;
+    }
+
+    /* Modal for Enlarged Image */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      animation: zoomIn 0.3s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 50px 20px;
+      background-color: #f4f1ec;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #4a2c0b;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 50px 20px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .services-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #4a2c0b;
+    }
+
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      font-size: 1.1rem;
+      color: #333;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+
+    .service-item:hover {
+      transform: scale(1.05);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 50px 20px;
+      background-color: #4a2c0b;
+      color: white;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-section a {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-top: 10px;
+      transition: transform 0.3s;
+    }
+
+    .contact-section a:hover {
+      transform: scale(1.1);
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-button img {
+      width: 60px;
+      height: 60px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .furniture-section h2,
+      .about-section h2,
+      .services-section h2,
+      .contact-section h2 {
+        font-size: 2rem;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .modal-close {
+        font-size: 1.5rem;
+        width: 30px;
+        height: 30px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="MarGerges_logo.png" alt="Margergis Logo" class="logo" />
-    <h1>معرض مارجرجس للأعمال الخشبية</h1>
-    <p>لكل الأثاث المنزلى <br>
-(حجرات نوم - حجرات اطفال - حجرات سفرة - <br>انتريهات - ركنات - مكاتب - مراتب ربوند طبية)</p>
-    <button class="button" onclick="window.location.href='tel:01278843587'">
-      📞 اتصل بنا: 01278843587
-    </button>
-    <div class="canva-embed">
-      <iframe loading="lazy" src="https://www.canva.com/design/DAGnbGw-exk/EJnCiTnrvzVP4fXlv7e2yg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="MarGerges_logo.png" alt="معرض مارجرجس للأعمال الخشبية">
     </div>
-    <!-- <a href="https://www.canva.com/design/DAGnbGw-exk/EJnCiTnrvzVP4fXlv7e2yg/view?utm_content=DAGnbGw-exk&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="color: #4CAF50; font-size: 16px; text-decoration: none;">
-      📄 تصفح الكتالوج على Canva
-    </a> -->
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" data-aos="fade-up" data-aos-duration="1000">
+    <div class="hero-content">
+      <h1>معرض مارجرجس للأعمال الخشبية</h1>
+      <p>اكتشف مجموعتنا الرائعة من الأثاث الخشبي المصنوع يدويًا بجودة عالية وتصاميم عصرية تناسب كل الأذواق.</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" data-aos="fade-up" data-aos-duration="1000">
+    <h2>من نحن</h2>
+    <p>معرض مارجرجس للأعمال الخشبية هو وجهتك المثالية للأثاث المنزلي عالي الجودة. نحن متخصصون في تصميم وتصنيع الأثاث الخشبي بأعلى معايير الحرفية، مع التركيز على التصاميم العصرية والتقليدية التي تلبي احتياجات كل منزل. نهدف إلى تقديم منتجات متينة وأنيقة تضيف لمسة من الدفء والفخامة إلى مساحتك.</p>
+  </section>
+
+  <!-- Furniture Section -->
+  <section class="furniture-section">
+    <h2 data-aos="fade-up" data-aos-duration="1000">منتجاتنا</h2>
+    <div class="furniture-grid" id="furniture-grid">
+      <!-- Furniture items will be added dynamically -->
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" data-aos="fade-up" data-aos-duration="1000">
+    <h2>خدماتنا</h2>
+    <div class="services-list">
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="100">حجرات نوم</div>
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="200">حجرات أطفال</div>
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="300">حجرات سفرة</div>
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="400">أنتريهات</div>
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="500">ركنات</div>
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="600">مكاتب</div>
+      <div class="service-item" data-aos="zoom-in" data-aos-delay="700">مراتب ربوند طبية</div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" data-aos="fade-up" data-aos-duration="1000">
+    <h2>تواصلوا معنا</h2>
+    <p>للاستفسار أو الطلب، تواصلوا معنا مباشرة عبر واتساب!</p>
+    <a href="https://wa.me/+201278843587" target="_blank">تواصل الآن</a>
+  </section>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/+201278843587" target="_blank" class="whatsapp-button">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+
+  <!-- Modal for Enlarged Image -->
+  <div class="modal" id="imageModal">
+    <span class="modal-close" id="closeModal">×</span>
+    <img id="modalImage" src="" alt="Enlarged Image">
   </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init();
+
+    // Sample furniture data (15 items)
+    const furnitureItems = [
+      { name: 'غرفة اطفال كاملة', price: 'عرض 2سرير ودولاب وكومودينو 26000ج بدل من 28000 ج', image: 'images/img_00.jpg' },
+      { name: 'غرفة النوم كاملة', price: '50 الف جنيه', image: 'images/img_01.jpg' },
+      { name: 'دولاب اطفال', price: '', image: 'images/img_007.png' },
+      { name: 'دولاب غرفة النوم', price: '', image: 'images/img_000.png' },
+      { name: 'دولاب غرفة النوم', price: '', image: 'images/img_001.png' },
+      { name: 'التسريحة', price: '', image: 'images/img_002.png' },
+      { name: 'ركنة مفرش فاتح', price: '22000 جنيه', image: 'images/img_004.png' },
+      { name: 'ركنة مفرش غامق', price: '22000 جنيه', image: 'images/img_003.png' },
+      { name: 'ترابيزا سفرة 6 كراسي', price: '5500 جنيه', image: 'images/img_005.png' },
+      { name: 'ترابيزا سفرة 6 كراسي', price: '5500 جنيه', image: 'images/img_006.png' },
+      { name: 'مكتب دراسي', price: 'عرض 2 مكتب 5500 جنيه', image: 'images/img_008.png' },
+      { name: 'مكتب دراسي', price: 'مكتب 3000 جنيه', image: 'images/img_008.png' },
+      { name: 'مرتبة ريبوند مضغوط طبي عرض 160سم ارتفاع 25سم', price: '5500 جنيه', image: 'images/img_009.png' },
+      { name: 'مرتبة ريبوند مضغوط طبي عرض 120 ارتفاع 25سم', price: '4500 جنيه', image: 'images/img_009.png' },
+      { name: 'مخدات وخداديات فايبر', price: '1000 ل 1200 جنيه', image: 'images/img_010.jpg' },
+    ];
+
+    // Function to render furniture items
+    function renderFurniture() {
+      const grid = document.getElementById('furniture-grid');
+      furnitureItems.forEach((item, index) => {
+        const furnitureDiv = document.createElement('div');
+        furnitureDiv.classList.add('furniture-item');
+        furnitureDiv.setAttribute('data-aos', 'fade-up');
+        furnitureDiv.setAttribute('data-aos-delay', `${index * 100}`);
+        furnitureDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="furniture-image">
+          <h3>${item.name}</h3>
+          <p>${item.price}</p>
+        `;
+        grid.appendChild(furnitureDiv);
+      });
+
+      // Add click event listeners to images
+      const images = document.querySelectorAll('.furniture-image');
+      images.forEach(img => {
+        img.addEventListener('click', () => showModal(img.src));
+      });
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    function showModal(src) {
+      modalImage.src = src;
+      modal.style.display = 'flex';
+    }
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Call the function to render items on page load
+    window.onload = renderFurniture;
+  </script>
 </body>
 </html>
