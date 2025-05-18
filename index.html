@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>معرض مارجرجس للأعمال الخشبية</title>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHN0XC6X5F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LHN0XC6X5F', { 'anonymize_ip': true });
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
@@ -47,7 +55,7 @@
     .hero {
       width: 100%;
       height: 100vh;
-      background: url('images/panner.jpg') no-repeat center center/cover;
+      background: url('/images/panner.jpg') no-repeat center center/cover;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -246,6 +254,11 @@
       margin-bottom: 20px;
     }
 
+    .contact-section p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
     .contact-section a {
       display: inline-block;
       background-color: #25D366;
@@ -260,6 +273,18 @@
 
     .contact-section a:hover {
       transform: scale(1.1);
+    }
+
+    /* Visitor Counter */
+    #visitor-count {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: #fff;
+    }
+
+    #visitor-count span {
+      font-weight: bold;
+      color: #e67e22;
     }
 
     /* WhatsApp Button */
@@ -308,6 +333,10 @@
         width: 30px;
         height: 30px;
       }
+
+      #visitor-count {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -315,7 +344,7 @@
   <!-- Header -->
   <header>
     <div class="logo">
-      <img src="MarGerges_logo.png" alt="معرض مارجرجس للأعمال الخشبية">
+      <img src="/images/MarGerges_logo.png" alt="معرض مارجرجس للأعمال الخشبية">
     </div>
   </header>
 
@@ -359,6 +388,7 @@
   <section class="contact-section" data-aos="fade-up" data-aos-duration="1000">
     <h2>تواصلوا معنا</h2>
     <p>للاستفسار أو الطلب، تواصلوا معنا مباشرة عبر واتساب!</p>
+    <p id="visitor-count">عدد الزوار: <span id="visitor-number">180</span></p>
     <a href="https://wa.me/+201278843587" target="_blank">تواصل الآن</a>
   </section>
 
@@ -380,21 +410,21 @@
 
     // Sample furniture data (15 items)
     const furnitureItems = [
-      { name: 'غرفة اطفال كاملة', price: 'عرض 2سرير ودولاب وكومودينو<br> 26000ج بدل من 28000 ج', image: 'images/img_01.jpg' },
-      { name: 'غرفة النوم كاملة', price: '50 الف جنيه', image: 'images/img_00.jpg' },
-      { name: 'دولاب اطفال', price: '', image: 'images/img_007.png' },
-      { name: 'دولاب غرفة النوم', price: '', image: 'images/img_000.png' },
-      { name: 'دولاب غرفة النوم', price: '', image: 'images/img_001.png' },
-      { name: 'التسريحة', price: '', image: 'images/img_002.png' },
-      { name: 'ركنة مفرش فاتح', price: '22000 جنيه', image: 'images/img_004.png' },
-      { name: 'ركنة مفرش غامق', price: '22000 جنيه', image: 'images/img_003.png' },
-      { name: 'ترابيزا سفرة 6 كراسي + نيش', price: '16000 جنيه', image: 'images/img_005.png' },
-      { name: 'ترابيزا سفرة 6 كراسي + نيش', price: '16000 جنيه', image: 'images/img_006.png' },
-      { name: 'مكتب دراسي', price: 'عرض 2 مكتب 5500 جنيه', image: 'images/img_008.png' },
-      { name: 'مكتب دراسي', price: 'مكتب 3000 جنيه', image: 'images/img_008.png' },
-      { name: 'مرتبة ريبوند مضغوط طبي عرض 160سم ارتفاع 25سم', price: '5500 جنيه', image: 'images/img_009.png' },
-      { name: 'مرتبة ريبوند مضغوط طبي عرض 120 ارتفاع 25سم', price: '4500 جنيه', image: 'images/img_009.png' },
-      { name: 'مخدات وخداديات فايبر', price: '1000 ل 1200 جنيه', image: 'images/img_010.jpg' },
+      { name: 'غرفة اطفال كاملة', price: 'عرض 2سرير ودولاب وكومودينو<br> 26000ج بدل من 28000 ج', image: '/images/img_01.jpg' },
+      { name: 'غرفة النوم كاملة', price: '50 الف جنيه', image: '/images/img_00.jpg' },
+      { name: 'دولاب اطفال', price: '', image: '/images/img_007.png' },
+      { name: 'دولاب غرفة النوم', price: '', image: '/images/img_000.png' },
+      { name: 'دولاب غرفة النوم', price: '', image: '/images/img_001.png' },
+      { name: 'التسريحة', price: '', image: '/images/img_002.png' },
+      { name: 'ركنة مفرش فاتح', price: '22000 جنيه', image: '/images/img_004.png' },
+      { name: 'ركنة مفرش غامق', price: '22000 جنيه', image: '/images/img_003.png' },
+      { name: 'ترابيزا سفرة 6 كراسي + نيش', price: '16000 جنيه', image: '/images/img_005.png' },
+      { name: 'ترابيزا سفرة 6 كراسي + نيش', price: '16000 جنيه', image: '/images/img_006.png' },
+      { name: 'مكتب دراسي', price: 'عرض 2 مكتب 5500 جنيه', image: '/images/img_008.png' },
+      { name: 'مكتب دراسي', price: 'مكتب 3000 جنيه', image: '/images/img_008.png' },
+      { name: 'مرتبة ريبوند مضغوط طبي عرض 160سم ارتفاع 25سم', price: '5500 جنيه', image: '/images/img_009.png' },
+      { name: 'مرتبة ريبوند مضغوط طبي عرض 120 ارتفاع 25سم', price: '4500 جنيه', image: '/images/img_009.png' },
+      { name: 'مخدات وخداديات فايبر', price: '1000 ل 1200 جنيه', image: '/images/img_010.jpg' },
     ];
 
     // Function to render furniture items
@@ -441,8 +471,27 @@
       }
     });
 
-    // Call the function to render items on page load
-    window.onload = renderFurniture;
+    // Fetch and display visitor count
+    async function updateVisitorCount() {
+      try {
+        // Increment counter by calling the API
+        await fetch('/api/counter', { method: 'POST' });
+        // Fetch current counter value
+        const response = await fetch('/api/counter');
+        const data = await response.json();
+        const visitorCount = data.count + 180; // Add 180 to start from 180
+        document.getElementById('visitor-number').textContent = visitorCount;
+      } catch (error) {
+        console.error('Error updating visitor count:', error);
+        document.getElementById('visitor-number').textContent = 180; // Fallback
+      }
+    }
+
+    // Call functions on page load
+    window.onload = () => {
+      renderFurniture();
+      updateVisitorCount();
+    };
   </script>
 </body>
 </html>
